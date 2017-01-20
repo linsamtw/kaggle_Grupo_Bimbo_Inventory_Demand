@@ -1,8 +1,10 @@
 # kaggle_Grupo_Bimbo_Inventory_Demand
 
-( this is R code )
+( R code )
 
-This code Score is kaggle NO.156, i will do better
+( warning , If the computer memory ram is less than 32gb , then it can’t run the data. )
+
+The rank is kaggle NO.156, i will do better
 
 https://www.kaggle.com/c/grupo-bimbo-inventory-demand/data
 
@@ -16,4 +18,4 @@ Fourth , run function before run main
 
 If any question , give me a message or others
 
-Thanks
+samlin266118@gmail.com
