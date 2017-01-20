@@ -4,6 +4,8 @@
 
 ( warning , If the computer memory ram is less than 32gb , then it can’t run the data. )
 
+It cost more than 30 minute.
+
 The rank is kaggle NO.156, i will do better
 
 https://www.kaggle.com/c/grupo-bimbo-inventory-demand/data
