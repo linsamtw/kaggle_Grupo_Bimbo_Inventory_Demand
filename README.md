@@ -6,7 +6,7 @@
 
 It cost more than 30 minute.
 
-The rank is kaggle NO.156, i will do better
+The rank is kaggle top 8% , NO.156 , i will do better
 
 https://www.kaggle.com/c/grupo-bimbo-inventory-demand/data
 
@@ -20,4 +20,4 @@ Fourth , run function before run main
 
 If any question , give me a message or others
 
-samlin266118@gmail.com
+e-mail : samlin266118@gmail.com
