@@ -135,67 +135,67 @@ work.var.fun=function(main.train.x){
 }
 
 work.model.fun2=function(main.train.y,
-			n,sample.amount,
-			mean.due.age,
-			mean.due.can,
-			mean.due.rut ,
-			mean.due.cli ,
-			mean.due.pro ,
-			mean.due.pa,
-			mean.due.pr,
-			mean.due.pcli,
-			mean.due.pcan,
-			mean.due.pca,
-			mean.vh.age,
-			mean.due.acrcp,
-			sd.due.acrcp){
-
-	set.seed(100)
-	#n=1000000
-	num = sample( c( 1:sample.amount ) ,n )
-	
-	test = main.train.y[num,.(	Agencia_ID , Canal_ID , Ruta_SAK , 
-							Cliente_ID , Producto_ID , log.due , 
-							Demanda_uni_equil )]	
-	#--------------------------------------------------------------------------------------------
-	test = merge(test , mean.due.age, all.x = TRUE, by = c("Agencia_ID"))
-	test = merge(test , mean.due.can, all.x = TRUE, by = c("Canal_ID"))
-	test = merge(test , mean.due.rut, all.x = TRUE, by = c("Ruta_SAK"))
-	test = merge(test , mean.due.cli, all.x = TRUE, by = c("Cliente_ID"))
-	#test = merge(test , mean.due.pro, all.x = TRUE, by = c("Producto_ID"))
-	#--------------------------------------------------------------------------------------------
-	#--------------------------------------------------------------------------------------------
-	#--------------------------------------------------------------------------------------------
-	test = merge(test , mean.due.pa, all.x = TRUE, by = c("Producto_ID", "Agencia_ID"))
-	test = merge(test , mean.due.pr, all.x = TRUE, by = c("Producto_ID", "Ruta_SAK"))
-	test = merge(test , mean.due.pcli, all.x = TRUE, by = c("Producto_ID", "Cliente_ID"))
-	test = merge(test , mean.due.pcan, all.x = TRUE, by = c("Producto_ID", "Canal_ID"))
-	#--------------------------------------------------------------------------------------------
-	test = merge(test , mean.due.pca, all.x = TRUE, by = c("Producto_ID", "Cliente_ID", "Agencia_ID"))
-	#-----------------------------------------------------------------
-	test = merge(test , mean.vh.age, all.x = TRUE, by = c("Agencia_ID"))
-
-
-	test = merge(test , sd.due.acrcp, all.x = TRUE, 
-		by = c("Producto_ID", "Cliente_ID", 
-				"Agencia_ID",	"Canal_ID" , "Ruta_SAK"))
-
-	test = merge(test , mean.due.acrcp, all.x = TRUE, 
-		by = c("Producto_ID", "Cliente_ID", 
-				"Agencia_ID",	"Canal_ID" , "Ruta_SAK"))
-
-	set.seed(100)
-	temp = work.train.data.fun( test )
-	train=temp[[1]]
-	test3=temp[[2]]
- 	set.seed(100)
-	#train,test3,nro,eta=0.1,md=10,cb=0.5
-	value = xgb.fun(train,test3,75,0.1,8,0.5)
-	(v1=value[[1]])
-
-	model1=value[[2]]
-	#----------------------------------------------------------------
-	return(list(c(v1),model1))
+                         n,sample.amount,
+                         mean.due.age,
+                         mean.due.can,
+                         mean.due.rut ,
+                         mean.due.cli ,
+                         mean.due.pro ,
+                         mean.due.pa,
+                         mean.due.pr,
+                         mean.due.pcli,
+                         mean.due.pcan,
+                         mean.due.pca,
+                         mean.vh.age,
+                         mean.due.acrcp,
+                         sd.due.acrcp){
+  
+  set.seed(100)
+  #n=1000000
+  num = sample( c( 1:sample.amount ) ,n )
+  
+  test = main.train.y[num,.(	Agencia_ID , Canal_ID , Ruta_SAK , 
+                             Cliente_ID , Producto_ID , log.due , 
+                             Demanda_uni_equil )]	
+  #--------------------------------------------------------------------------------------------
+  test = merge(test , mean.due.age, all.x = TRUE, by = c("Agencia_ID"))
+  test = merge(test , mean.due.can, all.x = TRUE, by = c("Canal_ID"))
+  test = merge(test , mean.due.rut, all.x = TRUE, by = c("Ruta_SAK"))
+  test = merge(test , mean.due.cli, all.x = TRUE, by = c("Cliente_ID"))
+  #test = merge(test , mean.due.pro, all.x = TRUE, by = c("Producto_ID"))
+  #--------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------
+  test = merge(test , mean.due.pa, all.x = TRUE, by = c("Producto_ID", "Agencia_ID"))
+  test = merge(test , mean.due.pr, all.x = TRUE, by = c("Producto_ID", "Ruta_SAK"))
+  test = merge(test , mean.due.pcli, all.x = TRUE, by = c("Producto_ID", "Cliente_ID"))
+  test = merge(test , mean.due.pcan, all.x = TRUE, by = c("Producto_ID", "Canal_ID"))
+  #--------------------------------------------------------------------------------------------
+  test = merge(test , mean.due.pca, all.x = TRUE, by = c("Producto_ID", "Cliente_ID", "Agencia_ID"))
+  #-----------------------------------------------------------------
+  test = merge(test , mean.vh.age, all.x = TRUE, by = c("Agencia_ID"))
+  
+  
+  test = merge(test , sd.due.acrcp, all.x = TRUE, 
+               by = c("Producto_ID", "Cliente_ID", 
+                      "Agencia_ID",	"Canal_ID" , "Ruta_SAK"))
+  
+  test = merge(test , mean.due.acrcp, all.x = TRUE, 
+               by = c("Producto_ID", "Cliente_ID", 
+                      "Agencia_ID",	"Canal_ID" , "Ruta_SAK"))
+  
+  set.seed(100)
+  temp = work.train.data.fun( test )
+  train=temp[[1]]
+  test3=temp[[2]]
+  set.seed(100)
+  #train,test3,nro,eta=0.1,md=10,cb=0.5
+  value = xgb.fun(train,test3,75,0.1,8,0.5)
+  (v1=value[[1]])
+  
+  model1=value[[2]]
+  #----------------------------------------------------------------
+  return(list(c(v1),model1))
 }
 
 bind.var.main.test.fun = 
@@ -293,104 +293,111 @@ money.level.fun=function(x){
 	return(value)
 }
 
-pred.fun=function(main.train.x,main.train.x2,train.amount,main.test){
-	#--------------------------------------------------------------------------------------------
-	#ネ跑计
-	main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
-	temp = work.var.fun(main.train.x)
-		mean.due.age	=	temp[[1]]
-		mean.due.can	=	temp[[2]]
-		mean.due.rut	=	temp[[3]]
-		mean.due.cli	=	temp[[4]]
-		mean.due.pro	=	temp[[5]]
-		mean.due.pa	=	temp[[6]]
-		mean.due.pr	=	temp[[7]]
-		mean.due.pcli	=	temp[[8]]
-		mean.due.pcan	=	temp[[9]]
-		mean.due.pca	=	temp[[10]]
-		mean.vh.age	=	temp[[11]]
-		mean.due.acrcp=	temp[[12]]
-		sd.due.acrcp	=	temp[[13]]
-	gc()
-	#--------------------------------------------------------------------------------------------
-	#
-	sample.amount = nrow(main.train.y)
-	temp2 = work.model.fun2(main.train.y,
-							train.amount,sample.amount,
-							mean.due.age,
-							mean.due.can,
-							mean.due.rut ,
-							mean.due.cli ,
-							mean.due.pro ,
-							mean.due.pa,
-							mean.due.pr,
-							mean.due.pcli,
-							mean.due.pcan,
-							mean.due.pca,
-							mean.vh.age,
-							mean.due.acrcp,
-							sd.due.acrcp)
-	gc()
-	print( temp2[[1]] )
-	model=temp2[[2]]
 
-	rm(temp2)
-	rm(temp)
-	#rm(main.train.x) 	
-	gc()
-
-	#-----------------------------------------------------------------
-	#-----------------------------------------------------------------	
-	#-----------------------------------------------------------------
-	#家ネ   钡ㄓ琌箇代
-
-	#--------------------------------------------------------------------------------------------
-	#ネ跑计
-	#main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
-	temp = work.var.fun(main.train.x2)
-		mean.due.age	=	temp[[1]]
-		mean.due.can	=	temp[[2]]
-		mean.due.rut	=	temp[[3]]
-		mean.due.cli	=	temp[[4]]
-		mean.due.pro	=	temp[[5]]
-		mean.due.pa	=	temp[[6]]
-		mean.due.pr	=	temp[[7]]
-		mean.due.pcli	=	temp[[8]]
-		mean.due.pcan	=	temp[[9]]
-		mean.due.pca	=	temp[[10]]
-		mean.vh.age	=	temp[[11]]
-		mean.due.acrcp=	temp[[12]]
-		sd.due.acrcp	=	temp[[13]]
-	rm(temp)
-	gc()
-	#---------------------------------------------------
-	#---------------------------------------------------
-	main.test = bind.var.main.test.fun(main.test,
-				mean.due.age,
-				mean.due.can,
-				mean.due.rut ,
-				mean.due.cli ,
-				mean.due.pro ,
-				mean.due.pa,
-				mean.due.pr,
-				mean.due.pcli,
-				mean.due.pcan,
-				mean.due.pca,
-				mean.vh.age,
-				mean.due.acrcp,
-				sd.due.acrcp)
-
-	pred1<-predict(model,xgb.DMatrix(data.matrix(
-					main.test[,c(8:ncol(main.test)),with=FALSE]),
-					missing=NA))
-	pred1.log = expm1( pred1 )
-	pred1.log=as.integer(round(pred1.log))
-
-	result1 = data.table(	id=main.test$id,
-						Demanda_uni_equil=pred1.log)
-
-	return((result1))
+pred.fun=function(main.train.x,main.train.x.2,train.amount,main.test){
+  #--------------------------------------------------------------------------------------------
+  #ネ跑计
+  main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
+  main.train.x = data.table( main.train.x )
+  
+  temp = work.var.fun(main.train.x)
+  mean.due.age	=	temp[[1]]
+  mean.due.can	=	temp[[2]]
+  mean.due.rut	=	temp[[3]]
+  mean.due.cli	=	temp[[4]]
+  mean.due.pro	=	temp[[5]]
+  mean.due.pa	=	temp[[6]]
+  mean.due.pr	=	temp[[7]]
+  mean.due.pcli	=	temp[[8]]
+  mean.due.pcan	=	temp[[9]]
+  mean.due.pca	=	temp[[10]]
+  mean.vh.age	=	temp[[11]]
+  mean.due.acrcp=	temp[[12]]
+  sd.due.acrcp	=	temp[[13]]
+  gc()
+  #--------------------------------------------------------------------------------------------
+  #
+  sample.amount = nrow(main.train.y)
+  main.train.y = data.table(main.train.y)
+  temp2 = work.model.fun2(main.train.y,
+                          train.amount,sample.amount,
+                          mean.due.age,
+                          mean.due.can,
+                          mean.due.rut ,
+                          mean.due.cli ,
+                          mean.due.pro ,
+                          mean.due.pa,
+                          mean.due.pr,
+                          mean.due.pcli,
+                          mean.due.pcan,
+                          mean.due.pca,
+                          mean.vh.age,
+                          mean.due.acrcp,
+                          sd.due.acrcp)
+  gc()
+  print( temp2[[1]] )
+  model=temp2[[2]]
+  
+  rm(temp2)
+  rm(temp)
+  #rm(main.train.x) 	
+  gc()
+  
+  #-----------------------------------------------------------------
+  #-----------------------------------------------------------------	
+  #-----------------------------------------------------------------
+  #家ネ   钡ㄓ琌箇代
+  
+  #--------------------------------------------------------------------------------------------
+  #ネ跑计
+  #main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
+  main.train.x.2 = data.table(main.train.x.2)
+  temp = work.var.fun(main.train.x.2)
+  mean.due.age	=	temp[[1]]
+  mean.due.can	=	temp[[2]]
+  mean.due.rut	=	temp[[3]]
+  mean.due.cli	=	temp[[4]]
+  mean.due.pro	=	temp[[5]]
+  mean.due.pa	=	temp[[6]]
+  mean.due.pr	=	temp[[7]]
+  mean.due.pcli	=	temp[[8]]
+  mean.due.pcan	=	temp[[9]]
+  mean.due.pca	=	temp[[10]]
+  mean.vh.age	=	temp[[11]]
+  mean.due.acrcp=	temp[[12]]
+  sd.due.acrcp	=	temp[[13]]
+  rm(temp)
+  gc()
+  #---------------------------------------------------
+  #---------------------------------------------------
+  main.test = bind.var.main.test.fun(main.test,
+                                     mean.due.age,
+                                     mean.due.can,
+                                     mean.due.rut ,
+                                     mean.due.cli ,
+                                     mean.due.pro ,
+                                     mean.due.pa,
+                                     mean.due.pr,
+                                     mean.due.pcli,
+                                     mean.due.pcan,
+                                     mean.due.pca,
+                                     mean.vh.age,
+                                     mean.due.acrcp,
+                                     sd.due.acrcp)
+  
+  pred1<-predict(model,xgb.DMatrix(data.matrix(
+    main.test[,c(8:ncol(main.test)),with=FALSE]),
+    missing=NA))
+  pred1.log = expm1( pred1 )
+  pred1.log=as.integer(round(pred1.log))
+  
+  result1 = data.table(	id=main.test$id,
+                        Demanda_uni_equil=pred1.log)
+  
+  return((result1))
 }
+
+
 
 
 
