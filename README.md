@@ -2,7 +2,7 @@
 
 ( R code )
 
-( warning , If the computer memory ram is less than 32gb , then it can’t run the data. )
+( warning , If the computer memory ram is less than 32gb , then it can’t run. )
 
 It cost more than 30 minute.
 
