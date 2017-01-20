@@ -21,18 +21,18 @@ setwd("/media/linsam/74D2F8C6D2F88D9C/kaggle")
 main.train=fread("train.csv")
 main.test=fread("test.csv")
 
-#data ¤À³Î
+#data Â¤Ã€Â³Ã
 main.train.y=filter(main.train,Semana==9)
 
-main.train.x=filter(main.train,Semana %in% c(3:8))#°V½m ¹w´ú9
-main.train.x.2=filter(main.train,Semana %in% c(3:9))#¹ê»Ú ¹w´ú10
+main.train.x=filter(main.train,Semana %in% c(3:8))#Â°VÂ½m Â¹wÂ´Ãº9
+main.train.x.2=filter(main.train,Semana %in% c(3:9))#Â¹ÃªÂ»Ãš Â¹wÂ´Ãº10
 
 
 rm(main.train)
 gc()
 #------------------------------------------------------------
 s=Sys.time()
-result1=pred.fun(main.train.x,main.train.x.2,5000,main.test)
+result1=pred.fun(main.train.x,main.train.x.2,5000000,main.test)
 e=Sys.time()
 e-s
 gc()
