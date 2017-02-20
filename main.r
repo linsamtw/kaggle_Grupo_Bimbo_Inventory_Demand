@@ -23,9 +23,9 @@
 
 	#data 分割
 	main.train.y = 
-  main.train %>% 
-  filter(.,Semana==9) %>%
-  data.table(.)
+  	main.train %>% 
+  	filter(.,Semana==9) %>%
+  	data.table(.)
 	
 	#訓練 預測9
 	main.train.x = 
