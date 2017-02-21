@@ -38,7 +38,6 @@ xgb.fun=function(train,test3,nro,eta=0.1,md=10,cb=0.5){
 				nrounds =nro,
                  	verbose = 1,
                  	print_every_n=5,
-                 early_stopping_rounds    = 10,
                  maximize            = FALSE,
                  eval_metric='rmse'
 	)
@@ -73,7 +72,7 @@ work.train.data.fun=function(test2){
 find.map.fun=function(x){
 	na.map = apply(x,1,is.na)
 	row.na = apply( t(na.map) , 1 , sum )
-	#¨S¦³naªºdata
+	#æ²’æœ‰naçš„data
 	map0 = (  row.na == 0 )
 	sum(map0)
 	return(map0)
@@ -241,14 +240,14 @@ bind.var.main.test.fun =
 }
 
 work.rfm.data.fun=function(main.train.x){
-	#data ±Æ§Ç
+	#data æ’åº
 	rfm.data0 =
 	main.train.x  %>% 
 	arrange(	Agencia_ID , Canal_ID , 
 			Ruta_SAK , Cliente_ID , 
 			Producto_ID , Semana)
 
-	#ºâ rfm
+	#ç®— rfm
 	temp = summarise(
 		group_by(
 			rfm.data0, Agencia_ID , Canal_ID , 
@@ -296,7 +295,7 @@ money.level.fun=function(x){
 
 pred.fun=function(main.train.x,main.train.x.2,train.amount,main.test){
   #--------------------------------------------------------------------------------------------
-  #¥ÍÅÜ¼Æ
+  #ç”Ÿè®Šæ•¸
   main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
   main.train.x = data.table( main.train.x )
   
@@ -346,10 +345,10 @@ pred.fun=function(main.train.x,main.train.x.2,train.amount,main.test){
   #-----------------------------------------------------------------
   #-----------------------------------------------------------------	
   #-----------------------------------------------------------------
-  #¼Ò«¬¥Í¦n¤F   ±µ¤U¨Ó¬O¹w´ú
+  #æ¨¡å‹ç”Ÿå¥½äº†   æ¥ä¸‹ä¾†æ˜¯é æ¸¬
   
   #--------------------------------------------------------------------------------------------
-  #¥ÍÅÜ¼Æ
+  #ç”Ÿè®Šæ•¸
   #main.train.y$log.due	= log1p( main.train.y$Demanda_uni_equil )
   main.train.x.2 = data.table(main.train.x.2)
   temp = work.var.fun(main.train.x.2)
