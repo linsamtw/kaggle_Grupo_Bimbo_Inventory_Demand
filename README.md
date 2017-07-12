@@ -1,4 +1,4 @@
-# kaggle Grupo Bimbo Inventory Demand, top 8% , NO.156
+# kaggle Grupo Bimbo Inventory Demand, NO.156/top 8%
 
 ( R code )
 
