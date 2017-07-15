@@ -43,10 +43,31 @@
  
  而評估準則是 [Root Mean Squared Logarithmic Error(RMSLE)]()
  
-<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;">
-
  ### 2.1 資料準備 
  
+ training data 大小約3GB，7個星期的相關資料，8千萬筆data，8個類別變數，5個數值變數。
+ 資料中並沒有標示日期，只有 week 3 ~ week 9，無法得知時間點。
+ testing data 是關於 week 10 ~ week 11 的庫存需求，這是我們要預測的目標。
+ 由於是預測未來，跟一般的ML不同，因此將進行資料切割。
+ 
+ ### 2.2 資料切割
+ 我們只有過去 7 個星期的資料，要預測未來 2 個星期不太容易，因此先簡化問題為，
+ 未來 1 個星期，將 testing data 中的 week 11 視為 week 10。
+ 
+ |預測未來 2 周|Week|Week|
+ |------------|----|-|
+ |真實情況，要預測 week 10 與 11 的庫存需求|3~9|10~11|
+ ||training data|testing data|
+ |假設 week 11 的 y 與 week 10 相同|3~9|10|
+ ||training data|testing data|
+ | 建立模型，y 是假的 testing data|3~8|9|
+ ||x|y|
+ |最後預測，時間進行平移|4~9|10|
+ ||x|y|
+ 
+ 因為要預測未來，因此進行以上調整，與一般cross validation不太相同。
+ 
+
 # 3. 特徵製造
 ### 3.1 feature engineering 1 ( 特徵工程 1 )
 
