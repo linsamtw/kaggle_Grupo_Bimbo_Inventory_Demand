@@ -5,7 +5,7 @@
  如果有問題可以直接寄信給我 <br>
  **********************************************
  這是我初學的第一個比賽，由於該比賽已經過期，因此排名是我藉由提交預測結果，
- kaggle計算出的得分，回推的排名，並非真實比賽。
+ kaggle計算出的得分，回推的排名，並非真實比賽。不過我的方法優於大部分參賽者提出的kernel。
  
  注意 : 
  **********************************************
@@ -50,11 +50,11 @@
  training data 大小約3GB，7個星期的相關資料，8千萬筆data，8個類別變數，5個數值變數。
  資料中並沒有標示日期，只有 week 3 ~ week 9，無法得知時間點。
  testing data 是關於 week 10 ~ week 11 的庫存需求，這是我們要預測的目標。
- 由於是預測未來，跟一般的ML不同，因此將進行資料切割。
+ 由於是預測未來，跟一般的ML不同，因此將進行資料切割。<br>
  
  ### 2.2 資料切割
  我們只有過去 7 個星期的資料，要預測未來 2 個星期不太容易，因此先簡化問題為，
- 未來 1 個星期，將 testing data 中的 week 11 視為 week 10。
+ 未來 1 個星期，將 testing data 中的 week 11 視為 week 10。<br>
  
  
  |預測未來 2 周|Week|Week|
@@ -77,25 +77,25 @@
 不然用的model與其他人不會有差別，每個人都會用，那憑什麼做的比其他人好?
 因此重點就在於 feature ，根據 [kaggle ceo](https://www.import.io/post/how-to-win-a-kaggle-competition/)的文章，
 the secret to winning Kaggle competitions，有兩個方法，其中一個就是Handcrafted feature engineering，
-因此將介紹我們在這個問題上，使用的feature engineering。
+因此將介紹我們在這個問題上，使用的feature engineering。<br><br>
 
 
 8個類別變數，5個數值變數，數值變數主要是，
 該產品 sales、sales 金額、return、return 金額與 Demanda_uni_equil，
 而 sales、return 與 Demanda_uni_equil 幾乎是線性的，sales - return = Demanda_uni_equil。
 有一點需要注意，Demanda_uni_equil 數據過於偏右，mean(7.225) 大於 Q3(6)，
-因此對該變數取log，將此變數分布往中間集中。
+因此對該變數取log，將此變數分布往中間集中。<br><br>
 
 
 除了數值變數之外，我們的 feature engineering 主要是對於類別變數進行處理。
 我們不使用一般傳統的方法( indicator matrix )，而是使用另一種方法，
 對於該"類別"，在"目標變數"上過去的平均表現，取代該類別。
 舉例來說，"紅豆麵包過去平均庫存需求量"，"商店A過去平均庫存需求量"，"路線B過去平均庫存需求量"等等，
-將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。
+將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。<br><br>
 
 
 參考 code 如下： ( due = Demanda_uni_equil，log.due = log( Demanda_uni_equil ) )<br>
-mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product_id")]
+mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product_id")]<br><br>
 
 
 以上是不同產品過去的平均表現，對 log.due 取 mean。
@@ -104,7 +104,7 @@ mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product
 
 ### 3.3 變數選擇
 在資料分析上，feature selection往往是最後在做的事，我們先盡可能製造各種變數，再來做feature selection。
-當你變數不夠多時，做feature selection是沒意義的。
+當你變數不夠多時，做feature selection是沒意義的。<br><br>
 
 ### 3.4 feature selection
 我們使用的方法是 forward selection，藉由XGBoost model計算error，觀察加入變數前後，
@@ -131,9 +131,7 @@ testing error有無下降，作為評斷標準。在 feature engineering 上，
 
 # Reference
 
- [Bosch Production Line Performance. ( 2016 ) ](https://www.kaggle.com/c/bosch-production-line-performance )<br>
-
-[Daniel FG. ( 2016 )](https://www.kaggle.com/danielfg/xgboost-reg-linear-lb-0-485)
+[kernel - Paulo Pinto. ( 2016 )](https://www.kaggle.com/paulorzp/log-mean-plus-lb-0-47000/code)
 
 
 
