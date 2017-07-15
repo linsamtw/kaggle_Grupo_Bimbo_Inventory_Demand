@@ -89,7 +89,7 @@ the secret to winning Kaggle competitions，有兩個方法，其中一個就是
 舉例來說，"紅豆麵包過去平均庫存需求量"，"商店A過去平均庫存需求量"，"路線B過去平均庫存需求量"等等，
 將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。
 
-參考 code 如下： ( due = Demanda_uni_equil，log.due = log( Demanda_uni_equil ) )
+參考 code 如下： ( due = Demanda_uni_equil，log.due = log( Demanda_uni_equil ) )<br>
 mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product_id")]
 
 以上是不同產品過去的平均表現，對 log.due 取 mean。
