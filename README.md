@@ -42,6 +42,7 @@
  詳細的variable selection將會在後面介紹，我們的目標不單單是最小化庫存損失，
  而是提高利潤。也就是說，過於低估會降低銷售量(庫存0就不會損失，然後就倒閉了QQ)，並不是我們希望的。
  
+ 
  而評估準則是 [Root Mean Squared Logarithmic Error(RMSLE)](https://www.kaggle.com/c/grupo-bimbo-inventory-demand#evaluation)
  
  ### 2.1 資料準備 
@@ -55,6 +56,7 @@
  我們只有過去 7 個星期的資料，要預測未來 2 個星期不太容易，因此先簡化問題為，
  未來 1 個星期，將 testing data 中的 week 11 視為 week 10。
  
+ 
  |預測未來 2 周|Week|Week|
  |------------|----|-|
  |真實情況，要預測 week 10 與 11 的庫存需求|3~9|10~11|
@@ -66,6 +68,7 @@
  |最後預測，時間進行平移|4~9|10|
  ||x|y|
  
+ 
  因為要預測未來，因此進行以上調整，與一般cross validation不太相同。
  
 
@@ -75,6 +78,7 @@
 因此重點就在於 feature ，根據 [kaggle ceo](https://www.import.io/post/how-to-win-a-kaggle-competition/)的文章，
 the secret to winning Kaggle competitions，有兩個方法，其中一個就是Handcrafted feature engineering，
 因此將介紹我們在這個問題上，使用的feature engineering。
+
 
 8個類別變數，5個數值變數，數值變數主要是，
 該產品 sales、sales 金額、return、return 金額與 Demanda_uni_equil，
@@ -89,11 +93,12 @@ the secret to winning Kaggle competitions，有兩個方法，其中一個就是
 舉例來說，"紅豆麵包過去平均庫存需求量"，"商店A過去平均庫存需求量"，"路線B過去平均庫存需求量"等等，
 將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。
 
+
 參考 code 如下： ( due = Demanda_uni_equil，log.due = log( Demanda_uni_equil ) )<br>
 mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product_id")]
 
-以上是不同產品過去的平均表現，對 log.due 取 mean。
 
+以上是不同產品過去的平均表現，對 log.due 取 mean。
 也可以同時對兩種類別變數做 feature engineering ，也就是 "紅豆麵包" 在 "商店A" 過去平均庫存需求量，
 藉由以上方法，我們製造非常多feature，接下來就是feature selection。
 
