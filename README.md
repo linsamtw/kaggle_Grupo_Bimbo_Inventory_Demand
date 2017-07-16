@@ -181,10 +181,10 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 
 # 延伸討論
   1. 我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型，
-     [kernel](https://www.kaggle.com/bpavlyshenko/bimbo-xgboost-r-script-lb-0-457)。<br>
-  2. 此問題可以延伸到3C產品上，當供應商手上有1000隻IPHONE，要如何分配，才能達到最大獲利?
-     舉例來說，如果給A商店900隻手機，B商店100隻手機，但是A商店需求量是500隻，B商店需求量是500隻，
-     這將增加A商店的倉儲成本，而B商店由於客戶無IPHONE購買，可能轉往購買其他廠牌，導致IPHONE市佔率下降。
+     [kernel](https://www.kaggle.com/bpavlyshenko/bimbo-xgboost-r-script-lb-0-457)。<br><br>
+  2. 此問題可以延伸到3C產品上，當供應商手上有1000隻IPHONE，要如何分配，才能達到最大獲利?<br>
+     舉例來說，如果給A商店900隻手機，B商店100隻手機，但是A商店需求量是500隻，B商店需求量是500隻，<br>
+     這將增加A商店的倉儲成本，而B商店由於客戶無IPHONE購買，可能轉往購買其他廠牌，導致IPHONE市佔率下降。<br>
      而更遠的層面為，國家的銷售，不同國家市佔率、關稅、運費等因素不同，我們希望：
 
      
