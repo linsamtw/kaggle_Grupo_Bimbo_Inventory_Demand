@@ -40,7 +40,7 @@
  
  根據我們的variable selection，其他變數相對不重要，並沒有放入model中，
  詳細的variable selection將會在後面介紹，我們的目標不單單是最小化庫存損失，
- 而是提高利潤。也就是說，過於低估會降低銷售量(庫存0就不會損失，然後就倒閉了QQ)，並不是我們希望的。
+ 而是提高利潤。也就是說，過於低估會降低銷售量( 庫存0就不會損失，然後就倒閉了QQ )，並不是我們希望的。
  
  
  而評估準則是 [Root Mean Squared Logarithmic Error(RMSLE)](https://www.kaggle.com/c/grupo-bimbo-inventory-demand#evaluation)
