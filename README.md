@@ -75,21 +75,19 @@
 # 3. 特徵工程
 在這步驟，根據我目前的經驗，這是ML最重要的一環，除非是自己寫 model，
 不然用的model與其他人不會有差別，每個人都會用，那憑什麼做的比其他人好?
-因此重點就在於 feature ，根據 [kaggle ceo](https://www.import.io/post/how-to-win-a-kaggle-competition/)的文章，
+重點就在於 feature ，根據 [kaggle ceo](https://www.import.io/post/how-to-win-a-kaggle-competition/)的文章，
 the secret to winning Kaggle competitions，有兩個方法，其中一個就是Handcrafted feature engineering，
-因此將介紹我們在這個問題上，使用的feature engineering。<br><br>
+因此將介紹在這個問題上，使用的feature engineering。<br><br>
 
 
-8個類別變數，5個數值變數，數值變數主要是，
-該產品 sales、sales 金額、return、return 金額與 Demanda_uni_equil，
-而 sales、return 與 Demanda_uni_equil 幾乎是線性的，sales - return = Demanda_uni_equil。
-有一點需要注意，Demanda_uni_equil 數據過於偏右，mean(7.225) 大於 Q3(6)，
+8個類別變數，5個數值變數，有一點需要注意，Demanda_uni_equil (庫存需求) 過於偏右，mean(7.225) 大於 Q3(6)，
 因此對該變數取log，將此變數分布往中間集中。<br><br>
 
 
 除了數值變數之外，我們的 feature engineering 主要是對於類別變數進行處理。
-我們不使用一般傳統的方法( indicator matrix )，而是使用另一種方法，
-對於該"類別"，在"目標變數"上過去的平均表現，取代該類別。
+不使用一般傳統的方法( indicator matrix )，而是使用另一種方法，
+對於該"類別"，在"目標變數"上過去的平均表現，取代該類別。<br><br>
+
 舉例來說，"紅豆麵包過去平均庫存需求量"，"商店A過去平均庫存需求量"，"路線B過去平均庫存需求量"等等，
 將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。<br><br>
 
