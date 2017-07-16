@@ -106,7 +106,8 @@ mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product
 
 ### 3.4 feature selection
 我使用的方法是 forward selection，藉由XGBoost model計算error，觀察加入變數前後，
-testing error有無下降，作為評斷標準。
+testing error有無下降，作為評斷標準。<br><br>
+
 在 feature engineering 上，
 選擇 forward selection 是直覺的，因為我們不可能一開始就把所有的 feature 都製造出來，
 過程應該是，一步一步找出 feature，不斷製造各種不同的變數，
@@ -137,10 +138,11 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 
 ### 3.5 model 
 我選用 XGBoost ，做為我們的model，這是一個 tree & GB 的model。在大多數Kaggle問題中，
-基本上都是 XGBoost or DL，XGB 速度上非常快，主要是程式上的差異，
-相較於其他的ML model(SVM, RF, TREE)，他使用多核心計算，所以速度上快上不少。
+基本上都是 XGBoost or DL，XGB 速度上非常快，
+相較於其他的ML model(SVM, RF, TREE)，他使用多核心計算，所以速度上快上不少。<br><br>
+
 實際上 XGBoost 可以比 RF 快上100倍，為何產生這樣的差異，
-該XGB的作者 - [Tianqi Chen](https://www.quora.com/What-makes-xgboost-run-much-faster-than-many-other-implementations-of-gradient-boosting)給出了更詳細回應，詳細可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)，在這不多做解釋。
+該XGB的作者 - [Tianqi Chen](https://www.quora.com/What-makes-xgboost-run-much-faster-than-many-other-implementations-of-gradient-boosting)給出了更詳細回應，詳細可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)，在這不多做解釋。<br><br>
 
 另外XGB可以藉由 sparse matrices 進行建模，在實際問題上，missing value是一定會發生的，
 因此這個優勢也是我們選擇它的原因之一。它處理 sparse matrices 的方法，要回到tree的概念，
