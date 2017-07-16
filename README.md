@@ -79,7 +79,7 @@
 the secret to winning Kaggle competitions，有兩個方法，其中一個就是Handcrafted feature engineering，
 因此將介紹在這個問題上，使用的feature engineering。<br><br>
 
-
+### 3.1 feature engineering
 8個類別變數，5個數值變數，有一點需要注意，Demanda_uni_equil (庫存需求) 過於偏右，mean(7.225) 大於 Q3(6)，
 因此對該變數取log，將此變數分布往中間集中。<br><br>
 
@@ -100,11 +100,10 @@ mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product
 也可以同時對兩種類別變數做 feature engineering ，也就是 "紅豆麵包" 在 "商店A" 過去平均庫存需求量，
 藉由以上方法，我們製造非常多feature，接下來就是feature selection。
 
-### 3.3 變數選擇
+### 3.2 feature selection
 在資料分析上，feature selection往往是最後在做的事，我們先盡可能製造各種變數，再來做feature selection。
 當你變數不夠多時，做feature selection是沒意義的。<br><br>
 
-### 3.4 feature selection
 我使用的方法是 forward selection，藉由XGBoost model計算error，觀察加入變數前後，
 testing error有無下降，作為評斷標準。<br><br>
 
@@ -136,7 +135,8 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 可以，很明顯看出，在加入變數後，testing error 逐步下降，而實際上我們進行非常多次的 feature engineering，
 最後的結果看似很簡短，實際上需要花非常多時間。
 
-### 3.5 model 
+# 4. MODEL
+
 我選用 XGBoost ，做為我們的model，這是一個 tree & GB 的model。在大多數Kaggle問題中，
 基本上都是 XGBoost or DL，XGB 速度上非常快，
 相較於其他的ML model(SVM, RF, TREE)，他使用多核心計算，所以速度上快上不少。<br><br>
@@ -151,7 +151,7 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 藉由這種想法，再利用algorithm去優化它，進而處理 sparse matrices ，
 詳細內容可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)。
    
-# 4. Fitted model
+# 5. Fitted model
 最後的模型，可以利用以下迴歸的方法表示：
 
 |y| |x|
@@ -170,7 +170,7 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 |||sd.due.acrcp |
 |||mean.due.acrcp|
 
-# 5. 結論
+# 6. 結論
 該篇主要重點可以分為以下兩點：
 1. feature engineering，利用過去平均表現，取代類別變數。<br>
 2. XGBoost 優於一般ML( SVM,RF,TREE,GB... )，實際問題上，
