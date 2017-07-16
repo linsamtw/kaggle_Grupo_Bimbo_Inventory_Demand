@@ -107,19 +107,48 @@ mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product
 當你變數不夠多時，做feature selection是沒意義的。<br><br>
 
 ### 3.4 feature selection
-我們使用的方法是 forward selection，藉由XGBoost model計算error，觀察加入變數前後，
-testing error有無下降，作為評斷標準。在 feature engineering 上，
-選擇 forward selection 是直覺的，因為我們不可能一開始就把所有的feature都製造出來，
-過程應該是，一步一步找出feature，不斷製造各種不同的變數，
+我使用的方法是 forward selection，藉由XGBoost model計算error，觀察加入變數前後，
+testing error有無下降，作為評斷標準。
+在 feature engineering 上，
+選擇 forward selection 是直覺的，因為我們不可能一開始就把所有的 feature 都製造出來，
+過程應該是，一步一步找出 feature，不斷製造各種不同的變數，
 我們無法事前得知哪些變數重要，只能利用經驗與視覺化分析，協助找出比較有可能的feature。
 
 
+對於初學者來說，需要特別注意，將種子設定好，否則每次結果不同，無法保證該變數是 feature or noise。
 
+以下是我加入變數後，error 下降的過程
 
-### 3.5 other 
+|Add Feature|The Feature Meaning|RMSLE of Train|RMSLE of Test|
+|-----------|-------------------|--------------|-------------|
+|baseline |-| 0.718| 0.728|
+|+mean.due.pa|the mean of log.due with Producto ID and Agencia ID.|0.525|0.536|
+|+mean.due.pr|the mean of log.due with Producto ID and Ruta SAK.|0.511|0.525|
+|+mean.due.pcli|the mean of log.due with Producto ID and Cliente ID.|0.455|0.467|
+|+mean.due.pcan|the mean of log.due with Producto ID and Canal ID.|0.449|0.462|
+|+mean.due.pca|the mean of log.due with Producto ID, Cliente ID and Agencia ID.|0.449|0.461|
+|+mean.vh.age|it is mean of nature log Venta hoy with Agencia ID.|0.449|0.461|
+|+sd.due.acrcp|it is standard deviation of log.due with Producto ID, Cliente ID, Agencia ID, Canal ID and Ruta SAK|0.446|0.460|
+|+mean.due.acrcp|the mean of log.due with Producto ID, Cliente ID,|0.445|0.459|
 
+baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, mean.due.Cliente_ID 這些變數，
+可以，很明顯看出，在加入變數後，testing error 逐步下降，而實際上我們進行非常多次的 feature engineering，
+最後的結果看似很簡短，實際上需要花非常多時間。
 
-   
+### 3.5 model 
+我選用 XGBoost ，做為我們的model，這是一個 tree & GB 的model。在大多數Kaggle問題中，
+基本上都是 XGBoost or DL，XGB 速度上非常快，主要是程式上的差異，
+相較於其他的ML model(SVM, RF, TREE)，他使用多核心計算，所以速度上快上不少。
+實際上 XGBoost 可以比 RF 快上100倍，為何產生這樣的差異，
+該XGB的作者 - [Tianqi Chen](https://www.quora.com/What-makes-xgboost-run-much-faster-than-many-other-implementations-of-gradient-boosting)給出了更詳細回應，詳細可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)，在這不多做解釋。
+
+另外XGB可以藉由 sparse matrices 進行建模，在實際問題上，missing value是一定會發生的，
+因此這個優勢也是我們選擇它的原因之一。它處理 sparse matrices 的方法，要回到tree的概念，
+一般tree就是做個二分法，也就是說，即使遇到NA，你也可以試著將它分到 左 or 右 ，再來計算loss function，
+簡單來說就是做個猜測，選一個最好的方向，minimise loss function。
+藉由這種想法，再利用algorithm去優化它，進而處理 sparse matrices ，
+詳細內容可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)。
+   
 # 4. Fitted model
 
 
