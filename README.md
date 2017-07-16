@@ -131,6 +131,8 @@ testing error有無下降，作為評斷標準。
 |+sd.due.acrcp|it is standard deviation of log.due with Producto ID, Cliente ID, Agencia ID, Canal ID and Ruta SAK|0.446|0.460|
 |+mean.due.acrcp|the mean of log.due with Producto ID, Cliente ID,|0.445|0.459|
 
+經過 feature engineering ，整體上進步約40%( 0.728 -> 0.459 )
+
 baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, mean.due.Cliente_ID 這些變數，
 可以，很明顯看出，在加入變數後，testing error 逐步下降，而實際上我們進行非常多次的 feature engineering，
 最後的結果看似很簡短，實際上需要花非常多時間。
@@ -169,6 +171,13 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 |||mean.due.acrcp|
 
 # 5. 結論
+該篇主要重點可以分為以下兩點：
+1. feature engineering，利用過去平均表現，取代類別變數。
+2. XGBoost 優於一般ML( SVM,RF,TREE,GB... )，實際問題上，
+   data超過10GB、100GB是正常的，因此快速的建模是必要條件，抽樣則會捨棄大數據的威力。
+3. 一致化的建模，而非將問題拆解，拆解會使問題複雜化，一致化解決問題，將使問題簡單。
+   了解model背後的原理，有助於建模，至少要了解參數意義，
+   而非都使用預設值( 研討會看到蠻多碩士生都不懂自己的model，甚至是教授)。
 
 # 延伸討論
   1. 我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型，
