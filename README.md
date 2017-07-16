@@ -150,13 +150,37 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 詳細內容可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)。
    
 # 4. Fitted model
+最後的模型，可以利用以下迴歸的方法表示：
 
+|y| |x|
+|-|-|-|
+|log.due| ~ |mean.due.Agencia ID |
+|||mean.due.Agencia ID| 
+|||mean.due.Canal ID |
+|||mean.due.Ruta SAK |
+|||mean.due.Cliente ID| 
+|||mean.due.pa |
+|||mean.due.pr |
+|||mean.due.pcli |
+|||mean.due.pcan |
+|||mean.due.pca |
+|||mean.vh.age |
+|||sd.due.acrcp |
+|||mean.due.acrcp|
 
-
-
+# 5. 結論
 
 # 延伸討論
-  我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型。
+  1. 我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型，
+     [kernel](https://www.kaggle.com/bpavlyshenko/bimbo-xgboost-r-script-lb-0-457)。
+  2. 此問題可以延伸到3C產品上，當供應商手上有1000隻IPHONE，要如何分配，才能達到最大獲利?
+     舉例來說，如果給A商店900隻手機，B商店100隻手機，但是A商店需求量是500隻，B商店需求量是500隻，
+     這將增加A商店的倉儲成本，而B商店由於客戶無IPHONE購買，可能轉往購買其他廠牌，導致IPHONE市佔率下降。
+     而更遠的層面為，國家的銷售，不同國家市佔率、關稅、運費等因素不同，
+     我們希望
+     1.最高市佔率，在市佔率低的地區，不希望造成缺貨的問題。
+     2.同樣價格上，最低關稅將使獲利提升。
+     3.新產品推出時間點早於競爭對手，可能會搶到市佔率，因此如果利用空運，那路線上的安排，運費是要考量的因素之一。
 
 # Reference
 
