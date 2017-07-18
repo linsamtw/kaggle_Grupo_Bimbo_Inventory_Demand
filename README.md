@@ -173,12 +173,15 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 # 6. 結論
 該篇主要重點可以分為以下兩點：
 1. feature engineering，利用過去平均表現，取代類別變數。<br>
+
 2. XGBoost 優於一般ML( SVM,RF,TREE,GB... )，實際問題上，
-   data超過10GB、100GB是正常的，因此快速的建模是必要條件，抽樣則會捨棄大數據的威力。<br>
+data超過10GB、100GB是正常的，因此快速的建模是必要條件，抽樣則會捨棄大數據的威力。<br>
+
 3. 該篇分析方法適不適用其他問題？如果單純只有這次有用，那沒有讀的價值，
    所以我對另外一個類似的比賽---[Rossmann Store Sales](https://github.com/f496328mm/kaggle_Rossmann_Store_Sales) 進行分析，
    有關銷售量預測，我認為銷售量與庫存量是類似的，使用相同方法做為出發，最後也得到不錯的成績(top 10% rank)，也就是說，未來遇到類似問題，
    該篇方法可以做為一個出發點。<br>
+   
 4. 一致化的建模，而非將問題拆解，拆解會使問題複雜化，一致化解決問題，將使問題簡單。
    了解model背後的原理，有助於建模，至少要了解參數意義，
    而非都使用預設值( 研討會看到蠻多碩士生都不懂自己的model，甚至是教授 )。
