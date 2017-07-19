@@ -17,7 +17,7 @@
  都會有相關的問題，因此我選擇此問題進行分析預測。
  
  # 2. 資料介紹
- Grupo Bimbo Inventory Demand 位於墨西哥，一百多萬家商店，以下是是該連鎖店一部分的分布圖
+ Grupo Bimbo 位於墨西哥，一百多萬家商店，以下是是該連鎖店一部分的分布圖
  
  ![google map](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/bimbo.jpg)
  
