@@ -172,7 +172,7 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 
 # 6. 結論
 該篇主要重點可以分為以下兩點：
-1. feature engineering，利用過去平均表現，取代類別變數。<br>
+1. feature engineering，主要是利用過去平均表現，取代類別變數。<br>
 
 2. XGBoost 優於一般ML( SVM,RF,TREE,GB... )，實際問題上，
 data超過10GB、100GB是正常的，因此快速的建模是必要條件，抽樣則會捨棄大數據的威力。<br>
