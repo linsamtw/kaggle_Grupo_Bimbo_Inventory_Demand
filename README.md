@@ -47,6 +47,11 @@
  
  ### 2.1 資料準備 
  
+|data|size|n (資料筆數)|p (變數數量)| time |
+|----|----|-----------|------------|------|
+|training data|3 GB|74 million 筆|8個類別變數，5個數值變數| week 3 ~ week 9|
+|testing data|239 MB|7 million 筆|8個類別變數，5個數值變數|week 10 ~ week 11|
+ 
  training data 大小約3GB，7個星期的相關資料，8千萬筆data，8個類別變數，5個數值變數。
  資料中並沒有標示日期，只有 week 3 ~ week 9，無法得知時間點。
  testing data 是關於 week 10 ~ week 11 的庫存需求，這是我們要預測的目標。
