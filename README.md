@@ -47,10 +47,10 @@
  
  ### 2.1 資料準備 
  
-|data|size|n (資料筆數)|p (變數數量)| time |
-|----|----|-----------|------------|------|
-|training data|3 GB|74 million 筆|8個類別變數，5個數值變數| week 3 ~ week 9|
-|testing data|239 MB|7 million 筆|8個類別變數，5個數值變數|week 10 ~ week 11|
+|data|size|n (資料筆數)|p (變數數量)| time |在 R 中佔的 ram |
+|----|----|-----------|------------|------|---------------|
+|training data|3 GB|74 million 筆|8個類別變數，5個數值變數| week 3 ~ week 9| 3.6 GB |
+|testing data|239 MB|7 million 筆|8個類別變數，5個數值變數|week 10 ~ week 11| 0.2 GB |
  
  training data 大小約3GB，7個星期的相關資料，8千萬筆data，8個類別變數，5個數值變數。
  資料中並沒有標示日期，只有 week 3 ~ week 9，無法得知時間點。
