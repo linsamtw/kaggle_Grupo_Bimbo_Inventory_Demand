@@ -47,7 +47,7 @@
  
  ### 2.1 資料準備 
  
-|data|size|n (資料筆數)|p (變數數量)| time |在 R 中佔的 ram |
+|data|size|n (資料筆數)|p (變數數量)| 時間長度 |在 R 中佔的 ram |
 |----|----|-----------|------------|------|---------------|
 |training data|3 GB|74 million 筆|8個類別變數，5個數值變數| week 3 ~ week 9| 3.6 GB |
 |testing data|239 MB|7 million 筆|8個類別變數，5個數值變數|week 10 ~ week 11| 0.2 GB |
