@@ -98,6 +98,27 @@ the secret to winning Kaggle competitions，有兩個方法，其中一個就是
 舉例來說，"紅豆麵包過去平均庫存需求量"，"商店A過去平均庫存需求量"，"路線B過去平均庫存需求量"等等，
 將 "紅豆麵包"、"商店A"、"路線B" 這些類別，用 "過去平均庫存需求量" 取代，轉換為數字，而數字我們也比較容易處理。<br><br>
 
+舉例來說，data 如下，target variable 是庫存需求<br>
+
+|category variable|target variable|
+|---|---|
+|紅豆麵包|1|
+|紅豆麵包|2|
+|紅豆麵包|3|
+|奶油麵包|3|
+|奶油麵包|8|
+|菠蘿麵包|9|
+|菠蘿麵包|22|
+
+將 category 轉換為 numerical，如下表<br>
+
+|category variable|numerical variable|
+|---|---|
+|紅豆麵包|(1+2+3)/3=2|
+|奶油麵包|(3+8)/2=5.5|
+|菠蘿麵包|(9+22)/2=15.5|
+
+使用 numerical variable 取代 category variable ，維度依然是1，相較於 indicator matrix or one hot encoding，維度大大減少。準確度方面，在此問題中，表現也不錯。
 
 參考 code 如下： ( due = Demanda_uni_equil，log.due = log( Demanda_uni_equil ) )<br>
 mean.due.product = train_data[,.(mean.due.product = mean(log.due)),by=c("product_id")]<br><br>
