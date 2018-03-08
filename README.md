@@ -88,7 +88,7 @@ the secret to winning Kaggle competitions，有兩個方法，其中一個就是
 
 --------------------
 #### feature engineering
-# 3.1 feature engineering
+### 3.1 feature engineering
 8個類別變數，5個數值變數，有一點需要注意，Demanda_uni_equil (庫存需求) 過於偏右，mean(7.225) 大於 Q3(6)，
 因此對該變數取log，將此變數分布往中間集中。<br><br>
 
