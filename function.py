@@ -259,7 +259,7 @@ def build_model(test):
     
     ''' compare gpu vs cpu
     gpu cost time : 0:00:44.152872 gtx-1060-3gb
-    cpu cost time : 0:10:30.306069 32 cores
+    cpu cost time : 0:10:30.306069 E5-2650*2 --- 32 cores
     -------------------gpu------------------------                   
     train_rmsle :0.48128475735646753
     test_rmsle :0.4830263706408986
