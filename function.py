@@ -51,7 +51,7 @@ def feature_engineering(train_x):
 
     #mean_due_age = 
     #mean.due.age = main.train.x[, .(mean.due.age = mean(log.due)), by = .(Agencia_ID)]
-    s = datetime.now()
+    #s = datetime.now()
     mean_due_age = train_x.groupby(['Agencia_ID'], as_index=False)['log_due'].agg({'mean_due_age':np.mean})
     mean_due_can = train_x.groupby(['Canal_ID'], as_index=False)['log_due'].agg({'mean_due_can':np.mean})
     mean_due_rut = train_x.groupby(['Ruta_SAK'], as_index=False)['log_due'].agg({'mean_due_rut':np.mean})
@@ -69,13 +69,13 @@ def feature_engineering(train_x):
     mean_due_pca = train_x.groupby(['Producto_ID','Cliente_ID','Agencia_ID'], as_index=False)
     mean_due_pca = mean_due_pca['log_due'].agg({'mean_due_pca':np.mean})
 	#--------------------------------------------------------------------------------------------
-    s = datetime.now()
+    #s = datetime.now()
     mean_due_acrcp = train_x.groupby(['Agencia_ID','Canal_ID','Ruta_SAK','Cliente_ID','Producto_ID'], as_index=False)
     mean_due_acrcp = mean_due_acrcp['log_due'].agg({'mean_due_acrcp':np.mean})
     sd_due_acrcp = train_x.groupby(['Agencia_ID','Canal_ID','Ruta_SAK','Cliente_ID','Producto_ID'], as_index=False)
     sd_due_acrcp = sd_due_acrcp['log_due'].agg({'sd_due_acrcp':np.std})
-    t = datetime.now() - s
-    print(t) 
+    #t = datetime.now() - s
+    #print(t) 
     # 0:00:04.097429
     
     tem = [ mean_due_age,
