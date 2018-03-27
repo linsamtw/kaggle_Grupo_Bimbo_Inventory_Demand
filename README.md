@@ -4,7 +4,8 @@
  e-mail : samlin266118@gmail.com <br>
  如果有問題可以直接寄信給我 <br>
 ## 新增 Python 版本的 code
- 基於 R code 進行更改，code 相似度高，此外，利用 XGBoost - GPU 版本 train model，提高效率與準確度。( 如果沒有安裝 gpu 版本，請註解  'tree_method':'gpu_hist') <br>
+ 基於 R code 進行更改，code 相似度高，此外，利用 XGBoost - GPU 版本 train model，提高效率與準確度。<br>
+ ( 如果沒有安裝 gpu 版本，請註解  'tree_method':'gpu_hist'  ) <br>
  [main](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/main.py)<br>
  [function](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/function.py)
  **********************************************
