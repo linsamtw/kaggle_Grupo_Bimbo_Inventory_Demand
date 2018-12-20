@@ -14,8 +14,8 @@
  
  結論：GPU 比 CPU 快 10 倍<br>
 
- [main](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/main.py)<br>
- [function](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/function.py)
+ [main](https://github.com/linsamtw/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/main.py)<br>
+ [function](https://github.com/linsamtw/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/function.py)
  **********************************************
  這是我初學的第一個比賽，由於該比賽已經過期，因此排名是我藉由提交預測結果，
  kaggle計算出的得分，回推的排名，並非真實比賽。不過我的方法優於大部分參賽者提出的kernel。
@@ -34,7 +34,7 @@
  # 2. 資料介紹
  Grupo Bimbo 位於墨西哥，一百多萬家商店，以下是是該連鎖店一部分的分布圖
  
- ![google map](https://github.com/f496328mm/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/bimbo.jpg)
+ ![google map](https://github.com/linsamtw/kaggle_Grupo_Bimbo_Inventory_Demand/blob/master/bimbo.jpg)
  
  部分店家位於郊區，部分商店位於市區，由不同的路線運送麵包，郊區與市區，對於麵包的需求也不相同，這會是我們考慮的變數之一。
  
@@ -191,7 +191,7 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 簡單來說就是做個猜測，選一個最好的方向，minimise loss function。
 藉由這種想法，再利用algorithm去優化它，進而處理 sparse matrices ，
 詳細內容可以參考 [XGBoost paper](https://arxiv.org/abs/1603.02754)。
-   
+   
 # 5. Fitted model
 最後的模型，可以利用以下迴歸的方法表示：
 
@@ -219,22 +219,22 @@ baseline 是使用 mean.due.Agencia_ID, mean.due.Canal_ID, mean.due.Ruta_SAK, me
 data超過10GB、100GB是正常的，因此快速的建模是必要條件，抽樣則會捨棄大數據的威力。<br>
 
 3. 該篇分析方法適不適用其他問題？如果單純只有這次有用，那沒有讀的價值，
-   所以我對另外一個類似的比賽---[Rossmann Store Sales](https://github.com/f496328mm/kaggle_Rossmann_Store_Sales) 進行分析，
+   所以我對另外一個類似的比賽---[Rossmann Store Sales](https://github.com/linsamtw/kaggle_Rossmann_Store_Sales) 進行分析，
    有關銷售量預測，我認為銷售量與庫存量是類似的，使用相同方法做為出發，最後也得到不錯的成績(top 10% rank)，也就是說，未來遇到類似問題，
    該篇方法可以做為一個出發點。<br>
    
 4. 一致化的建模，而非將問題拆解，拆解會使問題複雜化，一致化解決問題，將使問題簡單。
-   了解model背後的原理，有助於建模，至少要了解參數意義，
-   而非都使用預設值( 研討會看到蠻多碩士生都不懂自己的model，甚至是教授 )。
+   了解model背後的原理，有助於建模，至少要了解參數意義，
+   而非都使用預設值( 研討會看到蠻多碩士生都不懂自己的model，甚至是教授 )。
 
 
 # 延伸討論
-  1. 我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型，
+  1. 我並沒有使用時間序列上，lag term 作為變數，未來可以往這個方向去加強模型，
      [kernel](https://www.kaggle.com/bpavlyshenko/bimbo-xgboost-r-script-lb-0-457)。<br><br>
-  2. 此問題可以延伸到3C產品上，當供應商手上有1000隻IPHONE，要如何分配，才能達到最大獲利?<br>
-     舉例來說，如果給A商店900隻手機，B商店100隻手機，但是A商店需求量是500隻，B商店需求量是500隻，<br>
-     這將增加A商店的倉儲成本，而B商店由於客戶無IPHONE購買，可能轉往購買其他廠牌，導致IPHONE市佔率下降。<br>
-     而更遠的層面為，國家的銷售，不同國家市佔率、關稅、運費等因素不同，我們希望：
+  2. 此問題可以延伸到3C產品上，當供應商手上有1000隻IPHONE，要如何分配，才能達到最大獲利?<br>
+     舉例來說，如果給A商店900隻手機，B商店100隻手機，但是A商店需求量是500隻，B商店需求量是500隻，<br>
+     這將增加A商店的倉儲成本，而B商店由於客戶無IPHONE購買，可能轉往購買其他廠牌，導致IPHONE市佔率下降。<br>
+     而更遠的層面為，國家的銷售，不同國家市佔率、關稅、運費等因素不同，我們希望：
 
      
  |1|最高市佔率，在市佔率低的地區，不希望造成缺貨的問題|
